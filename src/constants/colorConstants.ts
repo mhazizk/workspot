@@ -1,6 +1,6 @@
 const colorConstants = {
   primary: "#C956FF",
-  secondary: "#8120AE",
+  secondary: "#999",
   text: "#ffffff",
   screenBackground: "#1A1A1A",
   cardBackground: "#892CFF",
