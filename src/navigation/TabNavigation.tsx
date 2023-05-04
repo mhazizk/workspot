@@ -7,10 +7,28 @@ import ExploreScreen from "../screens/ExploreScreen";
 import MyProfileScreen from "../screens/MyProfileScreen";
 import IonIcons from "react-native-vector-icons/Ionicons";
 import colorConstants from "../constants/colorConstants";
+import { StackNavigationProp } from "@react-navigation/stack";
+import RootStackParamList from "../types/rootStackParamList";
+import { RouteProp } from "@react-navigation/native";
 
 const Tab = createBottomTabNavigator();
 
-const TabNavigation = () => {
+type BottomTabScreenNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  "BottomTab"
+>;
+
+type BottomTabScreenRouteProp = RouteProp<RootStackParamList, "BottomTab">;
+
+interface BottomTabScreenProps {
+  navigation: BottomTabScreenNavigationProp;
+  route: BottomTabScreenRouteProp;
+}
+
+const TabNavigation: React.FC<BottomTabScreenProps> = ({
+  navigation,
+  route,
+}) => {
   return (
     <>
       <Tab.Navigator
