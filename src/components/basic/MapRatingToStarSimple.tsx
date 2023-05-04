@@ -24,7 +24,7 @@ const MapRatingToStarSimple: React.FC<MapRatingToStarProps> = ({ rating }) => {
         style={{
           paddingLeft: 4,
           color: "white",
-          fontSize: 16,
+          fontSize: 14,
         }}
       >
         {rating}
