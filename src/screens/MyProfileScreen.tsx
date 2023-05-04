@@ -1,39 +1,57 @@
-import { View, Text } from "react-native";
+import { View, Text, ScrollView } from "react-native";
 import React, { useEffect, useState } from "react";
 import WorkspotType from "../types/workspotType";
-import WorkspotsImageGrid from "../components/section/ImageGrid";
+import WorkspotsImageGrid from "../components/section/WorkspotsImageGrid";
 import { Image } from "expo-image";
 import LocationCoverImage from "../components/basic/LocationCoverImage";
+import UserProfileType from "../types/userProfileType";
+import ProfileCard from "../components/basic/ProfileCard";
+import RootStackParamList from "../types/rootStackParamList";
+import { StackNavigationProp } from "@react-navigation/stack";
+import { RouteProp } from "@react-navigation/native";
+import {
+  dummyData,
+  dummyUser,
+  dummyWorkspotDetails,
+} from "../constants/dummyData";
 
-const dummyData = (): WorkspotType[] => {
-  const data: WorkspotType[] = [];
-  let counter = 0;
-  while (counter < 10) {
-    data.push({
-      id: String(counter),
-      name: `Workspot ${counter}`,
-      description: `Description ${counter}`,
-      location: `Location ${counter}`,
-      imageURI: `https://picsum.photos/200/300?random=${counter}`,
-      rating: Math.random() * 5,
-      price: Math.random() * 100,
-    });
-    counter++;
-  }
-  return data;
-};
+type MyProfileScreenNavigationProp = StackNavigationProp<
+  RootStackParamList,
+  "Profile"
+>;
 
-const MyProfileScreen = () => {
+type MyProfileScreenScreenRouteProp = RouteProp<RootStackParamList, "Profile">;
+
+interface MyProfileScreenProps {
+  navigation: MyProfileScreenNavigationProp;
+  route: MyProfileScreenScreenRouteProp;
+}
+
+const MyProfileScreen: React.FC<MyProfileScreenProps> = ({
+  navigation,
+  route,
+}) => {
   const [workspots, setWorkspots] = useState<WorkspotType[]>(() => dummyData());
 
   return (
-    <View>
-      <LocationCoverImage
-        imageURI="https://picsum.photos/200/300?random=1"
-        rating={4}
-      />
-      <WorkspotsImageGrid workspots={workspots} />
-    </View>
+    <>
+      <ScrollView
+        nestedScrollEnabled
+        contentContainerStyle={{
+          padding: 16,
+        }}
+      >
+        <ProfileCard userProfile={dummyUser} onPress={() => {}} />
+        <WorkspotsImageGrid
+          workspots={dummyData()}
+          onPress={(workspot) => {
+            navigation.navigate("WorkspotDetails", {
+              workspot: dummyWorkspotDetails,
+            });
+          }}
+        />
+      </ScrollView>
+    </>
   );
 };
 
