@@ -11,6 +11,10 @@ const screenNameConstants = {
     id: "profileScreen",
     title: "Profile",
   },
+  workspotDetailsScreen: {
+    id: "workspotDetailsScreen",
+    title: "Workspot Details",
+  },
 };
 
 export default screenNameConstants;
